@@ -178,22 +178,7 @@ const PostDetail = () => {
         </div>
 
         {/* Edit/Delete buttons only for post author */}
-        {user?.id === post.author?._id && (
-          <div className="mt-6 flex gap-4">
-            <Link to={`/edit/${post._id}`}>
-              <Button variant="outline" className="text-yellow-600 border-yellow-600 hover:bg-yellow-50">
-                Edit
-              </Button>
-            </Link>
-            <Button
-              variant="outline"
-              className="text-red-600 border-red-600 hover:bg-red-50"
-              onClick={deletePost}
-            >
-              Delete
-            </Button>
-          </div>
-        )}
+        
       </article>
     </div>
   );
