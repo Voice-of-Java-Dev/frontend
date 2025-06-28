@@ -22,10 +22,10 @@ The only requirement is having Node.js & npm installed – [install with nvm](ht
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone 
+git clone https://github.com/Voice-of-Java-Dev/frontend.git
 
 # Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+cd frontend
 
 # Step 3: Install the necessary dependencies.
 npm install
