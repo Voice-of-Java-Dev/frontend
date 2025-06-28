@@ -187,12 +187,30 @@ const Index = () => {
                 </div>
               </div>
               {isMenuOpen && (
-                <nav className="md:hidden py-4 border-t dark:border-gray-700 space-y-2">
-                  <Link to="/">Home</Link>
-                  <Link to="/about">About</Link>
-                  <Link to="/contact">Contact</Link>
-                </nav>
-              )}
+  <nav className="md:hidden py-8 border-t dark:border-gray-700 flex flex-col gap-4">
+    <Link to="/" className="text-lg text-gray-800 dark:text-white">Home</Link>
+    <Link to="/about" className="text-lg text-gray-800 dark:text-white">About</Link>
+    <Link to="/contact" className="text-lg text-gray-800 dark:text-white">Contact</Link>
+
+    {/* 📱 Mobile Category Filter */}
+    <div className="mt-6">
+      <label className="block text-sm font-medium text-gray-700 dark:text-white mb-2">Filter by Category</label>
+      <select
+        value={selectedCategory}
+        onChange={(e) => {
+          setSelectedCategory(e.target.value);
+          setPage(1);
+        }}
+        className="w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-3 py-2"
+      >
+        {['All', ...Array.from(new Set(posts.flatMap(p => p.tags || [])))].map((cat) => (
+          <option key={cat} value={cat}>{cat}</option>
+        ))}
+      </select>
+    </div>
+  </nav>
+)}
+
             </div>
           </header>
 
