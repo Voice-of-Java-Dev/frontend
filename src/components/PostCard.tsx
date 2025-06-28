@@ -3,7 +3,6 @@ import { Clock, User, Calendar } from 'lucide-react';
 import TagBadge from './TagBadge';
 import { highlightText } from '@/utils/highlightText';
 
-
 interface Post {
   _id: string;
   title: string;
@@ -21,16 +20,12 @@ interface PostCardProps {
   post: Post;
   featured?: boolean;
   onPostUpdated?: () => void;
-  highlightQuery?: string; // ✅ Add this
+  highlightQuery?: string;
 }
 
-
-
-const PostCard = ({ post, featured = false, onPostUpdated }: PostCardProps) => {
+const PostCard = ({ post, featured = false }: PostCardProps) => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
-  const BASE_URL =
-    import.meta.env.VITE_API_BASE_URL || 'https://user-service-oyy1.onrender.com';
 
   // ✅ Extract email from JWT
   let currentUserEmail = '';
@@ -38,13 +33,11 @@ const PostCard = ({ post, featured = false, onPostUpdated }: PostCardProps) => {
     if (token) {
       const payload = JSON.parse(atob(token.split('.')[1]));
       currentUserEmail = payload.sub;
-      console.log('👤 Current User Email:', currentUserEmail); // ✅ Debug log
     }
   } catch (err) {
     console.error('❌ Failed to decode JWT:', err);
   }
 
-  // ✅ Normalize author info
   const authorName =
     typeof post.author === 'object' && post.author?.name
       ? post.author.name
@@ -52,56 +45,7 @@ const PostCard = ({ post, featured = false, onPostUpdated }: PostCardProps) => {
       ? post.author
       : 'Unknown Author';
 
-  const authorEmail =
-  typeof post.author === 'object'
-    ? post.author?.email || post.author?.name || ''
-    : typeof post.author === 'string'
-    ? post.author
-    : '';
-
-
-  const isAuthor = currentUserEmail === authorEmail;
-
-  console.log('👤 Current User Email:', currentUserEmail);
-console.log('✍️ Author Email:', authorEmail);
-console.log('✅ isAuthor:', isAuthor);
-
   const handleNavigate = () => navigate(`/post/${post.slug}`);
-
-  const handleToggleVisibility = async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    try {
-      const res = await fetch(`${BASE_URL}/api/posts/${post._id}/visibility`, {
-        method: 'PATCH',
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.ok && onPostUpdated) onPostUpdated();
-    } catch (error) {
-      console.error('Error toggling visibility:', error);
-    }
-  };
-
-  const handleDeletePost = async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const confirmDelete = window.confirm('Are you sure you want to delete this post?');
-    if (!confirmDelete) return;
-
-    try {
-      const res = await fetch(`${BASE_URL}/api/posts/${post._id}`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.ok && onPostUpdated) onPostUpdated();
-      else console.error('Delete failed:', res.status, await res.text());
-    } catch (error) {
-      console.error('Error deleting post:', error);
-    }
-  };
-
-  const handleEditPost = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    navigate(`/edit/${post._id}`);
-  };
 
   return (
     <article
@@ -175,32 +119,6 @@ console.log('✅ isAuthor:', isAuthor);
             Read more →
           </span>
         </div>
-
-        {/* Action Buttons (Only visible to post's author) */}
-        {isAuthor && (
-          <div className="flex gap-4 mt-4">
-            <button
-              onClick={handleToggleVisibility}
-              className="text-xs text-blue-600 hover:underline"
-            >
-              {post.visibility === 'PUBLIC' ? 'Make Private' : 'Make Public'}
-            </button>
-
-            <button
-              onClick={handleEditPost}
-              className="text-xs text-green-600 hover:underline"
-            >
-              Edit
-            </button>
-
-            <button
-              onClick={handleDeletePost}
-              className="text-xs text-red-600 hover:underline"
-            >
-              Delete
-            </button>
-          </div>
-        )}
       </div>
     </article>
   );
