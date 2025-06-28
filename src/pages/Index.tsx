@@ -286,9 +286,9 @@ const Index = () => {
                 <div>
                   <div className="flex items-center space-x-2 mb-4">
                     <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">D</span>
+                      <span className="text-white font-bold text-lg">Dev</span>
                     </div>
-                    <span className="text-xl font-bold">Java Dev</span>
+                    <span className="text-xl font-bold">Voices of Java Dev</span>
                   </div>
                   <p className="text-gray-400">A modern blog platform for sharing Java ideas and insights.</p>
                 </div>
