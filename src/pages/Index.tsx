@@ -278,16 +278,17 @@ const Index = () => {
               <p className="text-gray-500">No matching posts found.</p>
             ) : (
               <>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {postsToDisplay.map((post) => (
-                    <PostCard
-                      key={post._id}
-                      post={post}
-                      onPostUpdated={fetchAllPosts}
-                      highlightQuery={debouncedQuery}
-                    />
-                  ))}
-                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {postsToDisplay.map((post) => (
+    <PostCard
+      key={post._id}
+      post={post}
+      onPostUpdated={fetchAllPosts}
+      highlightQuery={debouncedQuery}
+    />
+  ))}
+</div>
+
                 {page < totalPages && (
                   <div ref={loaderRef} className="py-4">
                     <p className="text-center text-gray-500">Loading more...</p>
