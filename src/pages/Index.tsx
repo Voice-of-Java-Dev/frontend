@@ -32,6 +32,12 @@ const Index = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const loaderRef = useRef<HTMLDivElement>(null);
+  const latestPostsRef = useRef<HTMLDivElement | null>(null);
+
+const scrollToLatestPosts = () => {
+  latestPostsRef.current?.scrollIntoView({ behavior: 'smooth' });
+};
+
 
   const fetchAllPosts = async () => {
     setIsLoading(true);
@@ -253,14 +259,21 @@ const Index = () => {
             <div className="max-w-4xl mx-auto text-center px-4">
               <h1 className="text-5xl md:text-6xl font-bold mb-6">Discover Amazing Stories</h1>
               <p className="text-xl md:text-2xl text-blue-100 mb-8">Insights, tutorials, and perspectives from the world of tech</p>
-              <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-gray-100">
-                Start Reading
-              </Button>
+              <Button
+  size="lg"
+  variant="secondary"
+  className="bg-white text-blue-600 hover:bg-gray-100"
+  onClick={scrollToLatestPosts}
+>
+  Start Reading
+</Button>
+
             </div>
           </section>
 
           {/* Posts */}
-          <section className="max-w-7xl mx-auto px-4 py-16">
+          <section ref={latestPostsRef} className="max-w-7xl mx-auto px-4 py-16">
+
             <div className="flex flex-wrap justify-between items-center mb-8">
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
                 {debouncedQuery.length >= 2 ? 'Search Results' : 'Latest Posts'}
