@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Voices Of Java Dev</string>
+    <string name="title_activity_main">Voices Of Java Dev</string> <!-- optional override -->
+    <string name="package_name">com.example.voicesofjavadev</string> <!-- match actual package -->
+    <string name="custom_url_scheme">voicesofjavadev</string> <!-- no dots; keep it URL-safe -->
+</resources>
