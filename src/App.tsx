@@ -6,7 +6,6 @@ import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemesContext';
 import './index.css';
 
-
 import Index from './pages/Index';
 import PostDetail from './pages/PostDetail';
 import About from './pages/About';
@@ -15,6 +14,7 @@ import CreatePost from './pages/CreatePost';
 import NotFound from './pages/NotFound';
 import EditPost from './pages/EditPost';
 import MyPosts from './pages/MyPosts';
+import ChatbotWidget from '@/components/ChatbotWidget'; // ✅ Import ChatbotWidget
 
 const queryClient = new QueryClient();
 
@@ -36,6 +36,9 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
+
+          {/* ✅ Add chatbot at the end so it overlays other content */}
+          <ChatbotWidget />
         </TooltipProvider>
       </AuthProvider>
     </QueryClientProvider>
