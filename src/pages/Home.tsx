@@ -26,6 +26,9 @@ const Home = () => {
     fetchPosts();
   }, []);
 
+  console.log('🏠 Home page mounted!');
+
+
   if (loading) return <div className="text-center mt-10">Loading posts...</div>;
   if (error) return <div className="text-center text-red-500 mt-10">{error}</div>;
 

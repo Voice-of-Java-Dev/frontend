@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from "../contexts/AuthContext";
+
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 
