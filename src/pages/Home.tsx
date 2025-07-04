@@ -4,7 +4,6 @@ import { Calendar } from 'lucide-react';
 import TagBadge from '@/components/TagBadge';
 import axios from 'axios';
 import { useAuth } from '@/contexts/AuthContext';
-import ChatbotWidget from '@/components/ChatbotWidget'; // ✅ Import ChatbotWidget
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -110,9 +109,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      {/* ✅ Add Chatbot */}
-      <ChatbotWidget />
     </>
   );
 };

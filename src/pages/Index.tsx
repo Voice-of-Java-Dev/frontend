@@ -12,7 +12,7 @@ import RegisterModal from '@/components/RegisterModal';
 import CategoryFilter from '@/components/CategoryFilter';
 import { useAuth } from '@/contexts/AuthContext';
 import { highlightText } from '@/utils/highlightText';
-import ChatbotWidget from '@/components/ChatbotWidget'; // ✅ Chatbot Import
+
 
 const DEBOUNCE_DELAY = 300;
 const PAGE_SIZE = 6;
@@ -282,9 +282,6 @@ const Index = () => {
   
         </div>
       </div>
-  
-      {/* ✅ Chatbot rendered separately */}
-      <ChatbotWidget />
     </div>
   );
 }
